@@ -14,7 +14,7 @@ CountDownLatch 能够使一个线程在等待另外一些线程完成各自工�
 
 
 # CountDownLatch 使用
-![avatar](assets/images)
+![avatar](/assets/images/CountDownLatch.png)
 
 CountDownLatch提供了一个构造方法，你必须指定其初始值（计数器的值）。有一个<font color=red>countDown</font>方法，这个方法的作用就是用来减小计数器的值，当计数器的值减为 0 时，在CountDownLatch上<font color=red>await</font>方法的线程就会被唤醒，继续执行任务。这里也支持延迟唤醒。
 
@@ -460,7 +460,7 @@ private void cancelAcquire(Node node) {
 所以，对 CountDownLatch 的 await 调用大致会有如下的调用过程。
 
 ```mermaid
-graph TD
+graph TD;
 await(CountDownLatch:await)-->
 ID2(AQS:acquireSharedInterruptibly)-->
 id3(CountDownLatch:Sync:tryAcquireShared)-->
