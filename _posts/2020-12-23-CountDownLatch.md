@@ -461,16 +461,24 @@ private void cancelAcquire(Node node) {
 
 ```mermaid
 graph TD;
-await(CountDownLatch:await)-->
-ID2(AQS:acquireSharedInterruptibly)-->
-id3(CountDownLatch:Sync:tryAcquireShared)-->
-id4(AQS:doAcquireSharedInterruptibly)-->
-id5(AQS:tryAcquireShared)-->
-id6(AQS:setHeadAndPropagate)-->
-id7(AQS:shouldParkAfterFailedAcquire)-->
-id8(AQS:parkAndCheckInterrupt)-->
+await(CountDownLatch:await)
+ID2(AQS:acquireSharedInterruptibly)
+id3(CountDownLatch:Sync:tryAcquireShared)
+id4(AQS:doAcquireSharedInterruptibly)
+id5(AQS:tryAcquireShared)
+id6(AQS:setHeadAndPropagate)
+id7(AQS:shouldParkAfterFailedAcquire)
+id8(AQS:parkAndCheckInterrupt)
 id9(AQS:cancelAcquire)
 
+await --> ID2;
+ID2 --> id3;
+id3 --> id4;
+id4 --> id5;
+id5 --> id6;
+id6 --> id7;
+id7 --> id8;
+id8 --> id9;
 ```
 
 一个和await重载的方式 `await(long timeout, TimeUnit unit)`，这个方法和await 最重要的区别就是这个方法能够可以等待计数器一段时间再执行后续操作。
